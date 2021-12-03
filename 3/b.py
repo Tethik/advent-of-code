@@ -10,7 +10,7 @@ def most_common(lines, b):
             c += 1
     return c * 2 >= len(lines)
 
-ogr, cgr = lines.copy(), lines.copy()
+ogr = lines
 for b in range(bitlen):
     if len(ogr) < 2:
         break
@@ -20,6 +20,7 @@ for b in range(bitlen):
     print(ogr)    
 print()
 
+cgr = lines
 for b in range(bitlen):
     if len(cgr) < 2:
         break
