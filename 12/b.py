@@ -19,9 +19,8 @@ class Node:
 
 
 class Path:
-    def __init__(self, path=[], smallc=0) -> None:
+    def __init__(self, path=[]) -> None:
         self.path = path
-        self.smallc = smallc
 
     def finished(self):
         return self.path[-1].val == "end"
