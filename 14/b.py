@@ -20,10 +20,6 @@ def compute(poly: str, steps: int):
     ins = pairs.get(poly)
     if not ins:
         return Counter()
-    # left = poly[0] + ins
-    # right = poly[1] + ins
-    # print(left)
-    # print(right)
     return Counter(ins) + compute(poly[0] + ins, steps - 1) + compute(ins + poly[1], steps - 1)
 
 
