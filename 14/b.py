@@ -1,59 +1,45 @@
 import sys
-from collections import defaultdict, Counter
+from collections import Counter
 import functools
 
-poly = sys.stdin.readline().strip()
+polymer = sys.stdin.readline().strip()
 
-pairs = []
+pairs = dict()
 
 for line in sys.stdin:
     if line.strip() == "":
         continue
-    pairs.append(line.strip().split(" -> "))
-    
+    k, v = line.strip().split(" -> ")
+    pairs[k] = v
 
-@functools.lru_cache
-def compute(polymer: str):
-    compute(polymer, steps - 1)
-    pass
 
-"""
-These numbers are probably too big to populate the entire polymer.
-> In the above example, the most common element is B (occurring 2192039569602 times)
-> and the least common element is H (occurring 3849876073 times); subtracting these produces 2188189693529.
-"""
+@functools.lru_cache(None)
+def compute(poly: str, steps: int):
+    if steps <= 0:
+        return Counter()
+    ins = pairs.get(poly)
+    if not ins:
+        return Counter()
+    # left = poly[0] + ins
+    # right = poly[1] + ins
+    # print(left)
+    # print(right)
+    return Counter(ins) + compute(poly[0] + ins, steps - 1) + compute(ins + poly[1], steps - 1)
 
-for step in range(10):
-    print(step)
-    print("-->", poly)
-    inserts = defaultdict(lambda: [])
-    counts = defaultdict(lambda: 0)
-    for pair, ins in pairs:        
-        i = poly.find(pair)
-        while i > -1:
-            inserts[i+1].append(ins)
-            counts[ins] += 1
-            i = poly.find(pair, i+1)
 
-    print(counts)      
-    # print(inserts)
+#
+# After step 10, B occurs 1749 times, C occurs 298 times, H occurs 161 times, and N occurs 865 times;
+#
+steps = 40
+total = Counter(polymer)
+print(polymer, total)
+for i in range(len(polymer) - 1):
+    poly = polymer[i:i+2]
+    table = compute(poly, steps)
+    print(poly, table)
+    total += table
 
-    p = list(poly)
-    idx = sorted(inserts.keys())
-    for i in idx[::-1]:
-        ins = inserts[i]
-        p.insert(i, "".join(ins))
-    poly = "".join(p)
-    print("<--", poly)
-    print()
-
-print()
-counter = Counter(poly)
-mc = counter.most_common(len(counter.keys()))
-lc = mc[-1]
-print(lc)
-mc = mc[0]
-print(mc)
-
-print(mc[1] - lc[1])
-
+print(total)
+mc = total.most_common(len(total.keys()))
+print(mc[0], mc[-1])
+print(mc[0][1] - mc[-1][1])
