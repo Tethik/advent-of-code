@@ -7,6 +7,7 @@ Packet = namedtuple("Packet", ["version", "type_id", "value"])
 
 
 def to_int(b):
+    # fulhack för att översätta från bitstream till decimal
     return int(str(b), 2)
 
 
