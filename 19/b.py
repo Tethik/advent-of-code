@@ -94,6 +94,7 @@ def match(scanner1, scanner2, threshold):
 
 def any_match(scanners, threshold):
     # keys = sorted(scanners.keys(), key=lambda k: len(scanners[k]))
+    # hack here to ensure everything is merged into the same scanner set, so orientation is always the same
     keys = sorted(scanners.keys())
     for s1 in keys:
         m = False
