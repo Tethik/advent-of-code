@@ -1,11 +1,31 @@
 import sys
 
-incr = -1
-p = -1
+m = -1
+b = []
+mxs = []
 for line in sys.stdin:
-    value = int(line.strip())
-    if value > p:
-        incr += 1
-    p = value
+    i = line.strip()
+    print(i)
+    if i == "":
+        v = sum(b)
+        print(b, v)
+        if v > m:
+            m = v
+        b = []
+        mxs.append(v)
+    else:
+        b.append(int(i))
 
-print(incr)
+
+print(mxs[0])
+
+
+v = sum(b)
+print(b, v)
+if v > m:
+    m = v
+mxs.append(v)
+mxs = sorted(mxs)
+
+print(mxs[-3:], sum(mxs[-3:]))
+print(m)
