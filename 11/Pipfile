@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 pyyaml = "*"
-pycryptodome = "*"
 
 [dev-packages]
 autopep8 = "*"
