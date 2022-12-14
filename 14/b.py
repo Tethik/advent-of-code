@@ -56,7 +56,6 @@ for y in range(1, len(_map) - 1):
         if _map[y][x] == '#':
             continue
         parents = [_map[y - 1][x]]
-        # [, , _map[r - 1][x + 1]]:
         if x > 0:
             parents += _map[y - 1][x - 1]
         if x < len(_map[y]) - 1:
