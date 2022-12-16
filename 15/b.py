@@ -2,10 +2,6 @@ import sys
 import re
 from collections import defaultdict
 
-"""
-copied from 4
-"""
-
 line = sys.stdin.readline().strip()
 x_bounds = y_bounds = [int(c) for c in line.split(",")]
 print("Bounds set to", x_bounds)
