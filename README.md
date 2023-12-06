@@ -21,3 +21,5 @@ if matched := numberPattern.FindStringSubmatch(line); len(matched) > 0 {
     currMap.Ranges = append(currMap.Ranges, Range{Src: src, Dst: dst, Ran: ran})
 }
 ```
+
+- Must pattern helps clean up `if err != nil -> panic` statements (see above)
