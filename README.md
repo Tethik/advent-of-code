@@ -23,3 +23,11 @@ if matched := numberPattern.FindStringSubmatch(line); len(matched) > 0 {
 ```
 
 - Must pattern helps clean up `if err != nil -> panic` statements (see above)
+
+- To organize data I'm leaning towards putting everything into structs and implementing interfaces around them. It's a bit too painful otherwise without tuples and easy dictionaries.
+
+- Sorting is a bit odd. Seems you need to fulfill an interfaces which can be a bit cumbersome.
+
+- `slices.Reverse(someSlice)` reverses in place. Useful after sorting.
+
+- pointers are worth keeping in mind. Ended up accidentally passing a slice by reference accidentally on day 7 and being weirded out when value was still retained. `slices.Clone()` to clone a slice, but on the other hand passing references has a lot of benefit. New little hack learned, instead of cloning change value, run function, then reset back to original value. Probably cheaper than clone ;)
