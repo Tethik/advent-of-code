@@ -93,6 +93,10 @@ func (c Coord) Equals(other Coord) bool {
 	return c.X == other.X && c.Y == other.Y
 }
 
+func (c Coord) ManhattanDistance(other Coord) int {
+	return Abs(c.X-other.X) + Abs(c.Y-other.Y)
+}
+
 type Bounds struct {
 	Min Coord
 	Max Coord
